@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title> Mobile Hour - Phones</title>
+</head>
+<main>
+    <%- include("partials/header.ejs") %>
+    <form action ="product_list" method="get" class="search-form">
+        <input 
+            type="text"
+            name="search_term"
+            id="search-term"
+            placeholder="iPhone"/>  
+        <input type="submit" value="Search" />
+    </form>
+    <section class="phone-list">
+        <% for( let product of products){ %>
+            <article class = "phone-card">
+                <a href="product_details?id=<%= product.product_id %>"><img src="img/<%= product.product_picture %>.jpg" alt="phone"></a>
+                <a href="product_details?id=<%= product.product_id %>"><h2> <%= product.product_name %></h2></a>
+                <span>$<%= product.product_price %></span>
+                <p><%= product.product_model %></p>
+                <P>Manufacturer: <%= product.product_manufacturer %></P>
+               
+                <a  class="buy-button"href="product_checkout?id=<%= product.product_id %>"
+                    >Buy</a>
+                    <a  class="buy-button"href="add-to-cart?id=<%= product.product_id %>"
+                        >Add To Cart</a>   
+            </article>
+            <% } %>
+    </section>
+
+    <%- include("partials/footer.ejs") %>
+</main>
+
+</html>

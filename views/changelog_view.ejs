@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("partials/head.ejs") %>
+        <title>Mobile Hour - Staff Admin</title>
+    </head>
+    <body>
+        <main>
+            <%- include("partials/header.ejs") %> <%-
+            include("partials/admin_nav.ejs", {access_role: access_role}) %>
+            <form action ="changelog" method="get" class="search-form">
+                <input 
+                    type="text"
+                    name="search_term"
+                    id="search-term"
+                    placeholder="username, date or description"/>  
+                <input type="submit" value="Search" />
+            </form>
+            <section class="page-content">
+                <section class="changelog-view form-grid">
+                <span class="data-list-heading changelog-id">Changelog ID</span>
+                    <span class="data-list-heading">DateTime</span>
+                    <span class="data-list-heading">changelog Staff</span>
+                    <span class="data-list-heading">Changelog Description</span>
+                <% for (let changelog of changelogs) { %>
+                    <span class="changelog-id"><%= changelog.changelog_id %></span>
+                    <span><%= new Date(changelog.changelog_change_date.getTime() - changelog.changelog_change_date.getTimezoneOffset()*60000).toISOString().slice(0, 19).replace('T', ' ') %></span>
+                    <span><%= changelog.staff_username %></span>   
+                    <span><%= changelog.changelog_change_description %></span>
+                    </form>
+                    <% } %>
+                </section>
+        </section>
+            <%- include("partials/footer.ejs") %>
+        </main>
+    </body>
+</html>

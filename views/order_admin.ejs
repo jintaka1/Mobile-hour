@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("partials/head.ejs") %>
+    <title>Mobile Hour - Order Admin</title>
+  </head>
+  <body>
+    <main>
+      <%- include("partials/header.ejs") %> <%-
+      include("partials/admin_nav.ejs", {access_role: access_role}) %>
+      <section class="page-content">
+        <nav>
+          <a href="/order_admin?status=pending">Pending Orders</a>
+          <a href="/order_admin?status=complete">Complete Orders</a>
+          <a href="/order_admin?status=cancelled">Cancelled Orders</a>
+        </nav>
+        <section class="cols-4 data-list">
+          <span class="data-list-heading">Order Product</span>
+          <span class="data-list-heading"> Order Customer</span>
+          <span class="data-list-heading">Order Time</span>
+          <span class="data-list-heading">Status</span>
+          <% for (let order of orders) { %>
+
+          <span><%= order.product_name %></span>
+          <span
+            ><%= order.order_customer_first_name %> <%=
+            order.order_customer_last_name %></span
+          >
+          <span><%= order.order_date.toLocaleString() %></span>
+          <form action="/order_admin" method="post" class="order-update-form">
+            <input
+              type="hidden"
+              name="order_id"
+              value="<%= order.order_id %>"
+            />
+            <select name="status">
+              <option value="" disabled selected>Select</option>
+              <option value="pending">Pending</option>
+              <option value="complete">Complete</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <input type="submit" value="Update" class="input-button" />
+          </form>
+          <% } %>
+        </section>
+      </section>
+      <%- include("partials/footer.ejs") %>
+    </main>
+  </body>
+</html>

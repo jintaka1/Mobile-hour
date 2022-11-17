@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("partials/head.ejs") %>
+        <title>Mobile Hour - Product Admin</title>
+    </head>
+    <body>
+        <main>
+            <%- include("partials/header.ejs") %> <%-
+            include("partials/admin_nav.ejs", {access_role: access_role}) %>
+<section>
+    <form action="/edit_product" method="post" class="half-half-layout">
+        <section>
+        <h2>Product feature</h2>
+        <section class="form-grid">
+        <input
+        type="hidden"
+        name="feature_id"
+        value="<%= edit_product.feature_id %>"
+    />
+    <label for="feature_weight_g">Weight(g):</label>
+    <input
+        type="text"
+        name="feature_weight_g"
+        id="weight"
+        value="<%= edit_product.feature_weight_g %>"
+        pattern="[0-9]{1,}" 
+        required
+    />
+    <label for="feature_height_mm">Height(mm):</label>
+    <input
+        type="text"
+        name="feature_height_mm"
+        id="height"
+        value="<%= edit_product.feature_height_mm %>"
+        pattern="[0-9]{1,}" 
+        required
+    />
+    <label for="feature_width_mm">Width(mm):</label>
+    <input
+        type="text"
+        name="feature_width_mm"
+        id="width"
+        value="<%= edit_product.feature_width_mm %>"
+        pattern="[0-9]{1,}" 
+        required
+    />
+    <label for="feature_depth_mm">Depth(mm):</label>
+    <input
+        type="text"
+        name="feature_depth_mm"
+        id="depth"
+        value="<%= edit_product.feature_depth_mm %>"
+        pattern="[0-9]{1,}" 
+        required
+    />
+    <label for="feature_operating_system">Operating System:</label>
+    <input
+        type="text"
+        name="feature_operating_system"
+        id="operating_system"
+        value="<%= edit_product.feature_operating_system %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+    <label for="feature_screen_size">Screen Size:</label>
+    <input
+        type="text"
+        name="feature_screen_size"
+        id="screen_size"
+        value="<%= edit_product.feature_screen_size %>"
+        pattern="[a-zA-Z0-9\._ ]{3,}"
+        required
+    />
+    <label for="feature_screen_resolution">Screen Resolution:</label>
+    <input
+        type="text"
+        name="feature_screen_resolution"
+        id="screen_resolution"
+        value="<%= edit_product.feature_screen_resolution %>"
+        required
+    />
+    <label for="feature_cpu">CPU:</label>
+    <input
+        type="text"
+        name="feature_cpu"
+        id="cpu"
+        value="<%= edit_product.feature_cpu %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+    <label for="feature_ram">RAM:</label>
+    <input
+        type="text"
+        name="feature_ram"
+        id="ram"
+        value="<%= edit_product.feature_ram %>"
+        pattern="[a-zA-Z0-9]{3,}"
+        required
+    />
+    <label for="feature_storage">Storage:</label>
+    <input
+        type="text"
+        name="feature_storage"
+        id="storage"
+        value="<%= edit_product.feature_storage %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+    <label for="feature_battery">Battery:</label>
+    <input
+        type="text"
+        name="feature_battery"
+        id="battery"
+        value="<%= edit_product.feature_battery %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+    <label for="feature_rear_camera">Rear Camera:</label>
+    <input
+        type="text"
+        name="feature_rear_camera"
+        id="rear_camera"
+        value="<%= edit_product.feature_rear_camera %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+    <label for="feature_front_camera">Front Camera:</label>
+    <input
+        type="text"
+        name="feature_front_camera"
+        id="front_camera"
+        value="<%= edit_product.feature_front_camera %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+</section> 
+</section>
+<section class="edit_product">
+    <h2>Product Information</h2>
+    <section class="form-grid">
+    <input
+        type="hidden"
+        name="product_id"
+        value="<%= edit_product.product_id %>"
+    />
+    <label for="name">Name:</label>
+    <input
+        type="text"
+        name="product_name"
+        id="name"
+        value="<%= edit_product.product_name %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+    <label for="model">Model:</label>
+    <input
+        type="text"
+        name="product_model"
+        id="model"
+        value="<%= edit_product.product_model %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+    <label for="stock">Stock:</label>
+    <input
+        type="text"
+        name="product_stock"
+        id="stock"
+        value="<%= edit_product.product_stock %>"
+        pattern="[0-9]{1,}"
+        required
+    />
+    <label for="price">Price:</label>
+    <input
+        type="text"
+        name="product_price"
+        id="price"
+        value="<%= edit_product.product_price %>"
+        pattern="[0-9]+.+[0-9]{1,}"
+        required
+    />
+    <label for="manufacturer">Manufacturer:</label>
+    <input
+        type="text"
+        name="product_manufacturer"
+        id="manufacturer"
+        value="<%= edit_product.product_manufacturer %>"
+        pattern="[a-zA-Z0-9_ ]{3,}"
+        required
+    />
+    <input type="submit" name="action" value="delete" class="input-button"/>
+    <% if (edit_product.product_id == "0") { %>
+    <input type="submit" name="action" value="create" class="input-button"/>
+    <% } else { %>
+    <input type="submit" name="action" value="update" class="input-button"/>
+    <% } %>
+  
+</section>
+    </section>
+    
+
+</form>
+<%- include("partials/footer.ejs") %>
+</main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Mobile Hour - Order Confirmation</title>
+</head>
+<body>
+    <main>
+        <%- include("partials/header.ejs") %>
+        <section class="checkout-layout">
+            <article class="phone-card">
+                <img src="img/<%= order_with_product.product_picture%>.jpg" alt="phone">
+                <h2><%= order_with_product.product_name %></h2>
+                <p><%= order_with_product.product_model %></p>
+                <p><%= order_with_product.product_manufacturer%></p>
+            </article>
+            <article class="form-grid">
+                <label for="name">Order Product:</label>
+                <span id="name"><%= order_with_product.product_name %></span>
+                <label for="time">Order Time:</label>
+                <span id="status"><%= order_with_product.order_date.toLocaleString() %></span>
+                <label for="name">Order Name:</label>
+                <span id="name"><%= order_with_product.order_customer_first_name %></span>
+                <label for="status">Order Status:</label>
+                <span id="status"><%= order_with_product.order_status %></span>
+                <a href="/" class="link-button">Back</a>
+                <a href="order_confirmation?id=<%= order_with_product.order_id %>" class="link-button">Refresh</a>
+            </article>
+        </section>
+        <%- include("partials/footer.ejs") %>
+    </main>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("partials/head.ejs") %>
+    <title>Mobile Hour - Staff Admin</title>
+  </head>
+  <body>
+    <main>
+      <%- include("partials/header.ejs") %> <%-
+      include("partials/admin_nav.ejs", {access_role: access_role}) %>
+      <section class="page-content">
+        <form action="/edit_staff_profile" method="post" class="form-grid">
+          <p>Staff Role:</p>
+          <p><%= staff.staff_role %></p>
+          <input type="hidden" name="staff_id" value="<%= staff.staff_id %>" />
+          <input
+            type="hidden"
+            name="access_role"
+            id="staff_role"
+            value="<%= staff.staff_role %>"
+          />
+          <label for="first-name">First Name:</label>
+          <input
+            type="text"
+            name="first_name"
+            id="first-name"
+            value="<%= staff.staff_first_name %>"
+            pattern="[a-zA-Z]{2,}"
+            required
+          />
+          <label for="last-name">Last Name:</label>
+          <input
+            type="text"
+            name="last_name"
+            id="last-name"
+            value="<%= staff.staff_last_name %>"
+            pattern="[a-zA-Z]{2,}"
+            required
+          />
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            value="<%= staff.staff_username %>"
+            pattern="[a-zA-Z0-9]{3,}"
+            required
+          />
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            value="<%= staff.staff_password %>"
+            required
+          />
+          <input type="submit" name="action" value="update" class="input-button"/>
+        </form>
+      </section>
+      <%- include("partials/footer.ejs") %>
+    </main>
+  </body>
+</html>
